@@ -1,0 +1,176 @@
+[gd_scene load_steps=3 format=3 uid="uid://mwiwhws7rvdu"]
+
+[ext_resource type="Script" uid="uid://twhhhylp7qcm" path="res://Uploader.cs" id="1_0xm2m"]
+[ext_resource type="Theme" uid="uid://dj5ndqdo8q778" path="res://main_theme.tres" id="1_ig7tw"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("submitBtn", "appIdInput", "workshopIdInput", "titleInput", "descriptionInput", "tagsInput", "changelogInput", "logDialog", "logLabel", "logBtn", "folderInput", "folderSelect", "folderDialog", "imagePathInput", "imageSelect", "imageFileDialog", "imagePreviewBtn", "imagePreviewDialog", "imagePreviewRect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ig7tw")
+script = ExtResource("1_0xm2m")
+submitBtn = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button_Submit")
+appIdInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/LineEdit_AppId")
+workshopIdInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/LineEdit_WorkshopId")
+titleInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/LineEdit_Title")
+descriptionInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/TextEdit_Description")
+tagsInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/LineEdit_Tags")
+changelogInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/LineEdit_ChangeLog")
+logDialog = NodePath("LogDialog")
+logLabel = NodePath("LogDialog/TextEdit_Logs")
+logBtn = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button_Logs")
+folderInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/LineEdit_FolderPath")
+folderSelect = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/Button_FolderSelect")
+folderDialog = NodePath("FolderDialog")
+imagePathInput = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/LineEdit_ImagePath")
+imageSelect = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/Button_ImageSelect")
+imageFileDialog = NodePath("ImageFileDialog")
+imagePreviewBtn = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/Button_ImagePreview")
+imagePreviewDialog = NodePath("PreviewImageDialog")
+imagePreviewRect = NodePath("PreviewImageDialog/TextureRect_ImagePreview")
+
+[node name="ImageFileDialog" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+position = Vector2i(0, 36)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg", "*.jpeg")
+use_native_dialog = true
+
+[node name="FolderDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(0, 36)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="PreviewImageDialog" type="AcceptDialog" parent="."]
+title = "Image Preview"
+initial_position = 1
+size = Vector2i(512, 512)
+min_size = Vector2i(512, 512)
+ok_button_text = "Dismiss"
+
+[node name="TextureRect_ImagePreview" type="TextureRect" parent="PreviewImageDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 504.0
+offset_bottom = 463.0
+expand_mode = 1
+
+[node name="LogDialog" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "Logs"
+initial_position = 1
+size = Vector2i(512, 512)
+min_size = Vector2i(512, 512)
+ok_button_text = "Dismiss"
+
+[node name="TextEdit_Logs" type="TextEdit" parent="LogDialog"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+placeholder_text = "Logs"
+editable = false
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Empty Fields will not be submitted"
+
+[node name="LineEdit_AppId" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "App ID"
+clear_button_enabled = true
+
+[node name="LineEdit_WorkshopId" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Workshop ID"
+clear_button_enabled = true
+
+[node name="LineEdit_Title" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Title"
+clear_button_enabled = true
+
+[node name="LineEdit_Tags" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Tags (Ex: Tag1, Tag2)"
+clear_button_enabled = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit_FolderPath" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Folder Path"
+clear_button_enabled = true
+
+[node name="Button_FolderSelect" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Select"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit_ImagePath" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Image Path"
+clear_button_enabled = true
+
+[node name="Button_ImageSelect" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Select"
+
+[node name="Button_ImagePreview" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Preview"
+
+[node name="TextEdit_Description" type="TextEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Description"
+
+[node name="LineEdit_ChangeLog" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "ChangeLog"
+clear_button_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button_Logs" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Logs"
+
+[node name="Button_Submit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Submit"
